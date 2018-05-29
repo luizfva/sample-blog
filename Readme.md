@@ -19,7 +19,6 @@ To start the application run SampleBlogApplication.java main method from your ID
     and to check that it is running open `http://localhost:8080/articles/1` from your browser.
 
 ## Production Environment:
-  This is how we are going to run and evaluate your submission, so please make sure to run below steps before submit your answer.
 
   1) Dockerize SampleBlog:
     - in application.properties set database host to be "sampleblog-mysql" as below
