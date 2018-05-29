@@ -1,0 +1,26 @@
+version: '2'
+
+services:
+  sampleblog-app:
+    image: sampleblog
+    ports:
+      - 8080:8080
+    depends_on:
+      - sampleblog-mysql
+      - sampleblog-redis
+      - sampleblog-elasticsearch
+
+  sampleblog-mysql:
+    extends:
+        file: env.yml
+        service: sampleblog-mysql
+
+  sampleblog-redis:
+      extends:
+          file: env.yml
+          service: sampleblog-redis
+
+  sampleblog-elasticsearch:
+      extends:
+          file: env.yml
+          service: sampleblog-elasticsearch

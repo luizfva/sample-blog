@@ -1,0 +1,38 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="nando" id="1484386901782-1">
+        <createTable tableName="article">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_article"/>
+            </column>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="title" type="VARCHAR(255)"/>
+            <column name="content" type="LONGTEXT"/>
+            <column name="date" type="datetime"/>
+            <column name="published" type="BIT"/>
+        </createTable>
+        <createTable tableName="comment">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_comment"/>
+            </column>
+            <column name="article_id" type="BIGINT"/>
+            <column name="email" type="VARCHAR(255)"/>
+            <column name="message" type="LONGTEXT"/>
+            <column name="date" type="datetime"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="java" id="insert_article">
+        <insert tableName="article">
+            <column name="email">nando@ipsum.com</column>
+            <column name="title">The standard Lorem Ipsum passage, used since the 1500s</column>
+            <column name="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt
+                in culpa qui officia deserunt mollit anim id est laborum.
+            </column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
