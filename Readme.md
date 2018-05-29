@@ -1,6 +1,6 @@
 # Sample Blog
 
-Sample-blog is a backend is a sample Spring-boot application that users MySQL as its persistent datastore, Elasticsearch for searching Articles and Redis as cache solution.
+Sample-blog is a sample Spring-boot application that users MySQL as its persistent datastore, Elasticsearch for searching Articles and Redis as cache solution.
 
 
 ## Prerequisites:
