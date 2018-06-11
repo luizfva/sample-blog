@@ -2,7 +2,7 @@ package com.sampleblog.controller;
 
 import com.sampleblog.model.Article;
 import com.sampleblog.service.ArticleService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 public class ArticleController {
 
-    @Autowired
-    ArticleService articleService;
+    private final ArticleService articleService;
 
     @PostMapping(path = "articles")
     public ResponseEntity<Article> createArticle(@RequestBody Article article) {

@@ -3,17 +3,18 @@ package com.sampleblog.event.listener;
 import com.sampleblog.event.ArticleDeletedEvent;
 import com.sampleblog.event.ArticleSavedEvent;
 import com.sampleblog.search.ArticleSearchRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 @Component
+@AllArgsConstructor
 public class ArticleSearchIndexListener {
 
-    @Autowired
-    ArticleSearchRepository repository;
+    private ArticleSearchRepository repository;
 
-    @EventListener
+    @TransactionalEventListener
     public void handleArticleSavedEvent(final ArticleSavedEvent articleSavedEvent) {
         repository.save(articleSavedEvent.getArticle());
     }

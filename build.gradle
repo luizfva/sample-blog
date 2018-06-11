@@ -19,7 +19,9 @@ buildscript {
     }
 }
 
-
+plugins {
+    id 'net.ltgt.apt' version '0.10'
+}
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -52,6 +54,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-elasticsearch')
     compile('org.springframework.boot:spring-boot-starter-data-redis')
     compile('com.fasterxml.jackson.core:jackson-core')
+    compileOnly('org.projectlombok:lombok:1.16.22')
+    apt("org.projectlombok:lombok:1.16.22")
     testCompile('org.springframework.boot:spring-boot-starter-aop')
     compile('org.liquibase:liquibase-core')
     runtime('mysql:mysql-connector-java')

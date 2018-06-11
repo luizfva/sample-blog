@@ -5,7 +5,7 @@ import com.sampleblog.event.ArticleSavedEvent;
 import com.sampleblog.model.Article;
 import com.sampleblog.repository.ArticleRepository;
 import com.sampleblog.search.ArticleSearchRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -15,16 +15,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ArticleServiceImpl implements ArticleService {
 
-    @Autowired
-    ApplicationEventPublisher publisher;
+    private final ApplicationEventPublisher publisher;
 
-    @Autowired
-    ArticleRepository articleRepository;
+    private final ArticleRepository articleRepository;
 
-    @Autowired
-    ArticleSearchRepository searchRepository;
+    private final ArticleSearchRepository searchRepository;
 
     @Override
     @CachePut(key = "#article.id")

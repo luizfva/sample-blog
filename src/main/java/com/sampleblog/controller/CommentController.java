@@ -3,7 +3,7 @@ package com.sampleblog.controller;
 import com.sampleblog.model.Comment;
 import com.sampleblog.service.ArticleService;
 import com.sampleblog.service.CommentService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@AllArgsConstructor
 public class CommentController {
-    @Autowired
-    CommentService commentService;
 
-    @Autowired
-    ArticleService articleService;
+    private final CommentService commentService;
+
+    private final ArticleService articleService;
 
     @PostMapping(path = "articles/{article-id}/comments")
     public ResponseEntity<Comment> createComment(@PathVariable(value = "article-id") Long articleId,

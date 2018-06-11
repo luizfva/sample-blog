@@ -3,6 +3,9 @@
  */
 package com.sampleblog.model;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import javax.persistence.*;
@@ -13,138 +16,34 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Document(indexName = "article", type = "article")
+@Getter
 @Table(name = "article")
+@ToString(of = {"email", "title"})
+@EqualsAndHashCode(of = {"id", "email", "title"})
+@Document(indexName = "article", type = "article")
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 5124000706092599751L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
 
     @Email
     @NotNull
     @Column(name = "email")
-    String email;
+    private String email;
 
     @Column(name = "title")
-    String title;
+    private String title;
 
     @Size(min = 0, max = 32768)
     @Column(name = "content")
-    String content;
+    private String content;
 
     @Column(name = "date")
-    LocalDateTime date;
+    private LocalDateTime date;
 
     @Column(name = "published")
-    Boolean published;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(final Long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(final String email) {
-        this.email = email;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(final String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(final String content) {
-        this.content = content;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(final LocalDateTime date) {
-        this.date = date;
-    }
-
-    public Boolean getPublished() {
-        return published;
-    }
-
-    public void setPublished(final Boolean published) {
-        this.published = published;
-    }
-
-    /*
-     * As per business requirements id,email and title are sufficient to uniquely identify an entry.
-     * (non-Javadoc)
-     *
-     * @see java.lang.Object#hashCode()
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((email == null) ? 0 : email.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((title == null) ? 0 : title.hashCode());
-        return result;
-    }
-
-    /*
-     * As per business requirements id,email and title are sufficient to uniquely identify an entry.
-     * (non-Javadoc)
-     *
-     * @see java.lang.Object#equals(java.lang.Object)
-     */
-    @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Article other = (Article) obj;
-        if (email == null) {
-            if (other.email != null) {
-                return false;
-            }
-        } else if (!email.equals(other.email)) {
-            return false;
-        }
-        if (id == null) {
-            if (other.id != null) {
-                return false;
-            }
-        } else if (!id.equals(other.id)) {
-            return false;
-        }
-        if (title == null) {
-            if (other.title != null) {
-                return false;
-            }
-        } else if (!title.equals(other.title)) {
-            return false;
-        }
-        return true;
-    }
-
+    private Boolean published;
 }
